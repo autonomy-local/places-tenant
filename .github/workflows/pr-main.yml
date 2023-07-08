@@ -26,5 +26,5 @@ jobs:
           commit-message: "Merge PR #${{ github.event.pull_request.number }}"
           title: "Merge PR #${{ github.event.pull_request.number }}"
           body: "Merged PR #${{ github.event.pull_request.number }} into main"
-          branch: develop
+          branch: main
           base: main

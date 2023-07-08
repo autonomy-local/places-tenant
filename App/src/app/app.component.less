@@ -1,0 +1,32 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+.tiles {
+    width: 10rem;
+    gap: 1rem;
+    grid-auto-rows: minmax(var(--tui-height-m), auto);
+}
+
+@media @tui-mobile {
+    .tile_tall {
+        --tui-height: 2;
+    }
+}
+
+.content {
+    .transition(box-shadow);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 1rem 1rem;
+    background: var(--tui-base-01);
+    border-radius: var(--tui-radius-l);
+    cursor: ns-resize;
+
+    tui-tile._dragged & {
+        .shadow(5);
+    }
+}
+
+.icon {
+  padding: 0.5rem;
+}

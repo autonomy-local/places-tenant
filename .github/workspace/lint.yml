@@ -1,0 +1,19 @@
+name: Lint
+on:
+  push:
+
+jobs:
+  lint:
+    defaults:
+        run:
+          working-directory: ./App
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install
+      - name: Lint
+        run: npm run lint

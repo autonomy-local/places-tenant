@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: develop
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
         with:

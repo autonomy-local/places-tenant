@@ -1,6 +1,17 @@
-import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
-import { TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER } from "@taiga-ui/core";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
+import {
+  TuiRootModule,
+  TuiDialogModule,
+  TuiAlertModule,
+  TUI_SANITIZER,
+  TuiLabelModule,
+  TuiButtonModule,
+} from '@taiga-ui/core';
+import { TuiAppBarModule } from '@taiga-ui/addon-mobile';
+import { TuiBlockStatusModule } from '@taiga-ui/layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
+import { TuiActiveZoneModule } from '@taiga-ui/cdk';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -8,18 +19,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-      BrowserAnimationsModule,
-      TuiRootModule,
-      TuiDialogModule,
-      TuiAlertModule
-],
-  providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
-  bootstrap: [AppComponent]
+    BrowserAnimationsModule,
+    TuiRootModule,
+    TuiDialogModule,
+    TuiAlertModule,
+    TuiAppBarModule,
+    TuiBlockStatusModule,
+    TuiLabelModule,
+    TuiButtonModule,
+    TuiSidebarModule,
+    TuiActiveZoneModule,
+  ],
+  providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -6,6 +6,8 @@ on:
       - develop
     types:
       - closed
+permissions:
+  pull-requests: write
 jobs:
   create-main-pr:
     runs-on: ubuntu-latest
@@ -20,3 +22,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Merge PR #${{ github.event.pull_request.number }}"
+          title: "Merge PR #${{ github.event.pull_request.number }}"
+          body: "Merged PR #${{ github.event.pull_request.number }} into main"
+          branch: develop
+          base: main

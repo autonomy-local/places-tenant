@@ -38,4 +38,19 @@ describe('AppComponent', () => {
       'Tenant App'
     );
   });
+
+  // ReferenceError: spyOn is not defined
+  // cannot use jest spyOn method
+  // TODO: fix this test
+  // it('should menu click', fakeAsync(() => {
+  //   const fixture = TestBed.createComponent(AppComponent);
+  //   fixture.detectChanges();
+  //   const app = fixture.componentInstance;
+  //   spyOn(app, 'toggle');
+  //   const button = fixture.debugElement.nativeElement.querySelector('.menu');
+  //   button.click();
+
+  //   tick();
+  //   expect(app.toggle).toHaveBeenCalled();
+  // }));
 });

@@ -12,10 +12,10 @@
       (tuiActiveZoneChange)="toggle($event)"
   ></button>
   <label
-      tuiLabel="AppBar"
+      tuiLabel="App Name"
       class="reversed"
   >
-      App Name
+     <span>{{ title }}</span> 
   </label>
   <a
         tuiIconButton
@@ -30,7 +30,29 @@
         title="Settings"
     ></button>
 </tui-app-bar>
-<div *tuiSidebar="open">Content</div>
+<div *tuiSidebar="open">
+    <tui-tiles
+    class="tiles"
+    [(order)]="order"
+>
+    <tui-tile
+        *ngFor="let item of items; let index = index"
+        tuiTileHandle
+        class="tile"
+        [style.order]="order.get(index)"
+    >
+        <div class="content">
+            <tui-svg src="{{item.icon}}" class="icon"></tui-svg>
+            <a
+              tuiLink
+              routerLink="/"
+            >
+            {{ item.label }}
+        </a>
+            </div>
+    </tui-tile>
+</tui-tiles>
+</div>
 
 <router-outlet></router-outlet>
 

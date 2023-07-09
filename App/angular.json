@@ -85,17 +85,22 @@
             "browserTarget": "App:build"
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:jest",
-          "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
-            "tsConfig": "tsconfig.spec.json"
-          }
-        },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
+        },
+        "e2e": {
+          "builder": "@ngx-playwright/test:run",
+          "options": {
+            "config": "playwright/playwright.config.ts",
+            "devServerTarget": "serve"
+          },
+          "configurations": {
+            "ci": {
+              "forbidOnly": true
+            }
           }
         }
       }

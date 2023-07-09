@@ -1,4 +1,4 @@
-name: Unit Test
+name: E2E Test
 on:
   push:
 
@@ -7,6 +7,7 @@ jobs:
     defaults:
       run:
         working-directory: ./App
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v3
@@ -16,4 +17,8 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run tests
-        run: npm run test
+        run: npm run test:e2e
+      - uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: ./App/playwright/results

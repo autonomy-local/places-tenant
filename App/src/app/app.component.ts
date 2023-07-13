@@ -12,38 +12,46 @@ export class AppComponent {
   toggle(open: boolean) {
     this.open = open;
   }
-  items: readonly { label: string; icon: string }[] = [
+  items: readonly { label: string; icon: string; path: string }[] = [
     {
       label: '申請管理',
       icon: 'tuiIconCalendarLarge',
+      path: 'reservation',
     },
     {
       label: '施設管理',
       icon: 'tuiIconHomeLarge',
+      path: 'place',
     },
     {
       label: '団体管理',
       icon: 'tuiIconUsersLarge',
+      path: 'group',
     },
     {
       label: '会計管理',
       icon: 'tuiIconDollarSignLarge',
+      path: 'account',
     },
     {
       label: '規約管理',
       icon: 'tuiIconArchiveLarge',
+      path: 'rule',
     },
     {
       label: '運営会議',
       icon: 'tuiIconSmileLarge',
+      path: 'meeting',
     },
     {
       label: '報告書作成',
       icon: 'tuiIconTrelloLarge',
+      path: 'report',
     },
     {
       label: '設定',
       icon: 'tuiIconSettingsLarge',
+      path: 'setting',
     },
   ];
   order = new Map();

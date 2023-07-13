@@ -10,6 +10,7 @@
       type="button"
       (click)="toggle(true)"
       (tuiActiveZoneChange)="toggle($event)"
+      class="menu-button"
   ></button>
   <label
       tuiLabel="App Name"
@@ -41,11 +42,11 @@
         class="tile"
         [style.order]="order.get(index)"
     >
-        <div class="content">
+        <div class={{item.path}}>
             <tui-svg src="{{item.icon}}" class="icon"></tui-svg>
             <a
               tuiLink
-              routerLink="/"
+              routerLink="/{{ item.path }}"
             >
             {{ item.label }}
         </a>

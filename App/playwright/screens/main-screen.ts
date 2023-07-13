@@ -6,5 +6,5 @@ export class MainScreen extends ApplicationScreen {
   static path = '/';
 
   title = this.locatorFor('h1, h2, h3, h4, h5, h6');
-  menuButton = this.locatorFor('text=Menu');
+  menuButton = this.locatorFor('.menu-button');
 }

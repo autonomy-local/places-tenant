@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 
 type stepperState = 'error' | 'normal' | 'pass';
 
@@ -8,8 +9,11 @@ type stepperState = 'error' | 'normal' | 'pass';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.less'],
 })
-export class UserComponent {
-  constructor(private auth: AuthService) {}
+export class UserComponent implements OnInit {
+  constructor(
+    private auth: AuthService,
+    private analytics: AngularFireAnalytics
+  ) {}
   userId = this.auth.anonymousAccountID();
   isAnonymous = this.auth.isAnonymous();
   items: {
@@ -73,4 +77,10 @@ export class UserComponent {
       label: '設定情報を登録',
     },
   ];
+  ngOnInit(): void {
+    this.analytics.logEvent('user_page_opened', {
+      isAnonymous: this.isAnonymous,
+      userId: this.userId,
+    });
+  }
 }

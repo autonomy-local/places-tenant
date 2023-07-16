@@ -15,6 +15,7 @@ import { TuiTabBarModule } from '@taiga-ui/addon-mobile';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
+import { TuiLoaderModule } from '@taiga-ui/core';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -49,6 +50,7 @@ import { environment } from '../../src/environments/environment.dev';
     TuiTilesModule,
     TuiSvgModule,
     TuiTabBarModule,
+    TuiLoaderModule,
     ReactiveFormsModule,
     TuiInputModule,
     AngularFireModule.initializeApp(environment.firebase),

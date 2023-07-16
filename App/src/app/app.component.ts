@@ -10,14 +10,14 @@ import { AuthService } from './user/auth.service';
 export class AppComponent {
   constructor(private authService: AuthService) {
     effect(() => {
-      this.isLogin = this.authService.isLoggedIn();
+      this.isLogin = this.authService.isLoggedIn;
     });
   }
   title = 'Tenant App';
   open = false;
-  isLogin = this.authService.isLoggedIn();
+  isLogin = this.authService.isLoggedIn;
   toggle(open: boolean) {
-    if (this.isLogin) {
+    if (this.isLogin()) {
       this.open = open;
     } else {
       this.open = false;

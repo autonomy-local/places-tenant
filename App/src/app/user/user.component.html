@@ -1,5 +1,23 @@
-<p>user works!</p>
+<tui-block-status>
+  <img
+    class="onboardingImage"
+    tuiSlot="top"
+    alt="onboarding"
+    src="assets/images/onboarding.png"
+    />
+  <div class="onboarding">
+    <h4>ゲストユーザーとして準備をする</h4>
+    <p>ゲストユーザーでは一部の機能に制限が加わります</p>
+  </div>
+  <tui-stepper [activeItemIndex]="0" orientation="vertical">
+    <button *ngFor="let item of items; let index = index"
+      tuiStep
+      [stepState]= item.state
+      [icon]= item.icon 
+      [disabled]= item.disabled
+    >
+      {{ item.label }}
+    </button>
+  </tui-stepper>
+</tui-block-status>
 
-<ng-container>
-  {{userId}}
-</ng-container>

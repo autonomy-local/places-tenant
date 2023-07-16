@@ -7,6 +7,7 @@ export class AuthService {
 
   readonly isLoggedIn = signal(false);
   readonly anonymousAccountID = signal('');
+  readonly isAnonymous = signal(false);
 
   getUser() {
     // todo: error handling
@@ -15,6 +16,7 @@ export class AuthService {
         this.isLoggedIn.set(true);
         if (user.isAnonymous) {
           this.anonymousAccountID.set(user.uid);
+          this.isAnonymous.set(true);
         }
       } else {
         this.isLoggedIn.set(false);

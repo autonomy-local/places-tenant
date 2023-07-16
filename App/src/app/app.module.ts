@@ -20,9 +20,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UserComponent } from './user/user.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, UserComponent, SignInComponent, SignUpComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

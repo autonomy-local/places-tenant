@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { isLogin } from './user/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 export class AppComponent {
   title = 'Tenant App';
   open = false;
+  isLogin = isLogin();
   toggle(open: boolean) {
     this.open = open;
   }

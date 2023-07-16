@@ -31,6 +31,11 @@ import { TuiInputModule } from '@taiga-ui/kit';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import {
+  AngularFireAnalyticsModule,
+  ScreenTrackingService,
+  UserTrackingService,
+} from '@angular/fire/compat/analytics';
 import { environment } from '../../src/environments/environment.dev';
 
 @NgModule({
@@ -57,8 +62,13 @@ import { environment } from '../../src/environments/environment.dev';
     TuiInputModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireAnalyticsModule,
   ],
-  providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
+  providers: [
+    { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
+    ScreenTrackingService,
+    UserTrackingService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

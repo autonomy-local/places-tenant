@@ -36,9 +36,15 @@
       </button>
     </div>
     <div class="tui-form__button">
+      <tui-loader
+       [showLoader]="isLoading"
+       [inheritColor]="true"
+       [overlay]="true"
+      >
       <button tuiButton class="tui-form__button" size="l" type="button" (click)="signInAnonymously()">
         <span>ゲストユーザーとしてログイン</span>
       </button>
+      </tui-loader>
     </div>
   </form>
 </tui-block-status>

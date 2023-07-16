@@ -6,12 +6,16 @@ export class AuthService {
   constructor(private auth: AngularFireAuth) {}
 
   readonly isLoggedIn = signal(false);
+  readonly anonymousAccountID = signal('');
 
   getUser() {
     // todo: error handling
     this.auth.onAuthStateChanged((user) => {
       if (user) {
         this.isLoggedIn.set(true);
+        if (user.isAnonymous) {
+          this.anonymousAccountID.set(user.uid);
+        }
       } else {
         this.isLoggedIn.set(false);
       }

@@ -73,7 +73,7 @@ icon="{{ item.icon }}"
 
 <!-- App Content -->
 <router-outlet *ngIf="isLogin"></router-outlet>
-<div *ngIf="!isLogin">
+<div *ngIf="!isLogin" class="loginComponent">
     <!-- sign in and sign up component here -->
     <app-sign-in></app-sign-in>
 </div>

@@ -24,6 +24,9 @@ import { UserComponent } from './user/user.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { TuiInputModule } from '@taiga-ui/kit';
+
 @NgModule({
   declarations: [AppComponent, UserComponent, SignInComponent, SignUpComponent],
   imports: [
@@ -42,6 +45,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     TuiTilesModule,
     TuiSvgModule,
     TuiTabBarModule,
+    ReactiveFormsModule,
+    TuiInputModule,
   ],
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
   bootstrap: [AppComponent],

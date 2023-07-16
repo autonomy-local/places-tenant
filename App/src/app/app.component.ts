@@ -12,7 +12,11 @@ export class AppComponent {
   open = false;
   isLogin = isLogin();
   toggle(open: boolean) {
-    this.open = open;
+    if (this.isLogin) {
+      this.open = open;
+    } else {
+      this.open = false;
+    }
   }
   items: readonly { label: string; icon: string; path: string }[] = [
     {

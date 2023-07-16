@@ -1,7 +1,8 @@
 <!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
 <tui-root>
 <!-- App Header -->
-<tui-app-bar>
+<tui-app-bar
+class="appbar">
   <button
       tuiIconButton
       tuiSlot="left"
@@ -31,6 +32,20 @@
         title="Settings"
     ></button>
 </tui-app-bar>
+<nav
+tuiTabBar
+class="tabs"
+>
+<a
+*ngFor="let item of items; let index = index"
+tuiTabBarItem
+routerLinkActive
+routerLink="/{{ item.path }}"
+icon="{{ item.icon }}"
+>
+{{ item.label }}
+</a>
+</nav>
 <div *tuiSidebar="open">
     <tui-tiles
     class="tiles"

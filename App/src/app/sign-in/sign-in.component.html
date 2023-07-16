@@ -5,17 +5,12 @@
     alt="Sign In"
     src="assets/images/sign-in.png"
   />
-  <h4>Please Sign In</h4>
-  <p>You can try Anonymous Account</p>
-  <form>
+  <h4>サービスの利用を開始する</h4>
+  <p>アカウント未登録の方はゲストユーザーとしてログイン</p>
+  <form class="signInForm">
     <h3 class="tui-form__header tui-form__header_margin-top_none">
-      REGISTRATION
+      Emailでログイン
     </h3>
-    <div class="tui-form__row mb-1">
-      <tui-input>
-        氏名<span class="tui-required"></span>
-      </tui-input>
-    </div>
     <div class="tui-form__row mb-1">
       <tui-input>
         メールアドレス<span class="tui-required"></span>
@@ -26,17 +21,23 @@
         パスワード<span class="tui-required"></span>
       </tui-input>
     </div>
-    <div class="tui-form__row mb-1">
-      <tui-input>
-        パスワード（確認用）<span class="tui-required"></span>
-      </tui-input>
-    </div>
     <div class="tui-form__buttons">
       <button tuiButton class="tui-form__button" size="l" type="submit">
-        登録
+        ログイン
       </button>
       <button tuiButton class="tui-form__button" size="l" type="button" appearance="flat">
         キャンセル
+      </button>
+    </div>
+    <p>or</p>
+    <div class="tui-form__button">
+      <button tuiButton class="tui-form__button" size="l" type="submit">
+        <span>Googleアカウントログイン</span>
+      </button>
+    </div>
+    <div class="tui-form__button">
+      <button tuiButton class="tui-form__button" size="l" type="submit">
+        <span>ゲストユーザーとしてログイン</span>
       </button>
     </div>
   </form>

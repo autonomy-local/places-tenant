@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { isLogin } from './user/auth.service';
+import { Component, ChangeDetectionStrategy, effect } from '@angular/core';
+import { AuthService } from './user/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,14 @@ import { isLogin } from './user/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+  constructor(private authService: AuthService) {
+    effect(() => {
+      this.isLogin = this.authService.isLoggedIn();
+    });
+  }
   title = 'Tenant App';
   open = false;
-  isLogin = isLogin();
+  isLogin = this.authService.isLoggedIn();
   toggle(open: boolean) {
     if (this.isLogin) {
       this.open = open;

@@ -27,6 +27,10 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TuiInputModule } from '@taiga-ui/kit';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { environment } from '../../src/environments/environment.dev';
+
 @NgModule({
   declarations: [AppComponent, UserComponent, SignInComponent, SignUpComponent],
   imports: [
@@ -47,6 +51,8 @@ import { TuiInputModule } from '@taiga-ui/kit';
     TuiTabBarModule,
     ReactiveFormsModule,
     TuiInputModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
   ],
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
   bootstrap: [AppComponent],

@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { isLogin } from './user/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,13 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 export class AppComponent {
   title = 'Tenant App';
   open = false;
+  isLogin = isLogin();
   toggle(open: boolean) {
-    this.open = open;
+    if (this.isLogin) {
+      this.open = open;
+    } else {
+      this.open = false;
+    }
   }
   items: readonly { label: string; icon: string; path: string }[] = [
     {

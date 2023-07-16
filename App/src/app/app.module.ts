@@ -11,6 +11,7 @@ import {
 import { TuiAppBarModule } from '@taiga-ui/addon-mobile';
 import { TuiBlockStatusModule } from '@taiga-ui/layout';
 import { TuiTilesModule } from '@taiga-ui/kit';
+import { TuiTabBarModule } from '@taiga-ui/addon-mobile';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
@@ -37,6 +38,7 @@ import { AppComponent } from './app.component';
     TuiActiveZoneModule,
     TuiTilesModule,
     TuiSvgModule,
+    TuiTabBarModule,
   ],
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
   bootstrap: [AppComponent],

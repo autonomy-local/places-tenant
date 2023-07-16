@@ -11,7 +11,6 @@ export class AppComponent {
   constructor(private authService: AuthService) {
     effect(() => {
       this.isLogin = this.authService.isLoggedIn();
-      if (this.isLogin) window.alert('ログインしました');
     });
   }
   title = 'Tenant App';

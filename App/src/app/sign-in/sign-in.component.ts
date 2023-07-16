@@ -25,7 +25,7 @@ export class SignInComponent implements OnInit {
   signInAnonymously(): void {
     // todo: error handle
     this.signInService.signInAnonymously().then(() => {
-      window.alert('ゲストユーザーとしてログインしました');
+      this.authService.getUser();
     });
   }
 }

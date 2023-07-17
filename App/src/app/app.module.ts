@@ -36,6 +36,7 @@ import {
   ScreenTrackingService,
   UserTrackingService,
 } from '@angular/fire/compat/analytics';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '../../src/environments/environment.dev';
 
 @NgModule({
@@ -63,6 +64,7 @@ import { environment } from '../../src/environments/environment.dev';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireAnalyticsModule,
+    AngularFirestoreModule,
   ],
   providers: [
     { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },

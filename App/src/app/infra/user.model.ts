@@ -4,6 +4,7 @@ type User = {
   id: string;
   name: string;
   email: string;
+  role: 'admin' | 'staff';
 };
 
 type AnonymousUser = {
@@ -16,6 +17,7 @@ export const userSchema: JSONSchemaType<User> = {
     id: { type: 'string' },
     name: { type: 'string' },
     email: { type: 'string', format: 'email' },
+    role: { type: 'string', enum: ['admin', 'staff'] },
   },
   required: ['id', 'name'],
   additionalProperties: false,

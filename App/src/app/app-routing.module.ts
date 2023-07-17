@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './components/user/user.component';
+import { UserRegisterComponent } from './components/user-register/user-register.component';
 
 const routes: Routes = [
   {
@@ -23,16 +24,21 @@ const routes: Routes = [
   {
     path: 'account',
     loadChildren: () =>
-      import('./components/account/account.module').then((m) => m.AccountModule),
+      import('./components/account/account.module').then(
+        (m) => m.AccountModule
+      ),
   },
   {
     path: 'rule',
-    loadChildren: () => import('./components/rule/rule.module').then((m) => m.RuleModule),
+    loadChildren: () =>
+      import('./components/rule/rule.module').then((m) => m.RuleModule),
   },
   {
     path: 'meeting',
     loadChildren: () =>
-      import('./components/meeting/meeting.module').then((m) => m.MeetingModule),
+      import('./components/meeting/meeting.module').then(
+        (m) => m.MeetingModule
+      ),
   },
   {
     path: 'report',
@@ -42,11 +48,17 @@ const routes: Routes = [
   {
     path: 'setting',
     loadChildren: () =>
-      import('./components/setting/setting.module').then((m) => m.SettingModule),
+      import('./components/setting/setting.module').then(
+        (m) => m.SettingModule
+      ),
   },
   {
     path: 'user',
     component: UserComponent,
+  },
+  {
+    path: 'user/register',
+    component: UserRegisterComponent,
   },
 ];
 

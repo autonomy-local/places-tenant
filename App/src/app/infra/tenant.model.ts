@@ -8,7 +8,7 @@ type Tenant = {
   orgStatus: 'active' | 'inactive';
   // isOrgFlag: false, isAssociationFlag: false なら自然人
   isOrgFlag: boolean; // 法人か？ isOrgFlag: true なら法人
-  isAssociationFlag: boolean; // 自然人の団体か？ isAssociationFlag: true なら自然人の団体
+  isIndividualFlag: boolean; // 自然人の団体か？ isAssociationFlag: true なら自然人の団体
   isTerritorialFlag: { self: boolean; gov: boolean }; // 地縁か？ selfは自己申告 govは所在の市町村による判定
 };
 
@@ -29,7 +29,7 @@ export const tenantSchema: JSONSchemaType<Tenant> = {
     city: { type: 'string' },
     orgStatus: { type: 'string', enum: ['active', 'inactive'] },
     isOrgFlag: { type: 'boolean' },
-    isAssociationFlag: { type: 'boolean' },
+    isIndividualFlag: { type: 'boolean' },
     isTerritorialFlag: {
       type: 'object',
       properties: {

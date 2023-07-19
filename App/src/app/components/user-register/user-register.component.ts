@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { provinces, Province } from 'src/app/infra/area.model';
-import { prefectures, Prefecture } from 'src/app/infra/area.model';
+import { provinces, Province } from 'src/app/infra/base-model/area.model';
+import { prefectures, Prefecture } from 'src/app/infra/base-model/area.model';
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',

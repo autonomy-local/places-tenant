@@ -1,5 +1,11 @@
-import { Component, ChangeDetectionStrategy, effect } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  effect,
+  OnInit,
+} from '@angular/core';
 import { AuthService } from './components/user/auth.service';
+import { RxDBService } from './infra/RxDB/rxDB.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +13,8 @@ import { AuthService } from './components/user/auth.service';
   styleUrls: ['./app.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  constructor(private authService: AuthService) {
+export class AppComponent implements OnInit {
+  constructor(private authService: AuthService, private rxDB: RxDBService) {
     effect(() => {
       this.isLogin = this.authService.isLoggedIn;
     });
@@ -66,4 +72,8 @@ export class AppComponent {
     },
   ];
   order = new Map();
+
+  async ngOnInit(): Promise<void> {
+    this.rxDB.init();
+  }
 }

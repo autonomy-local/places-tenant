@@ -14,7 +14,6 @@ export class RxDBService {
   readonly usersCollection$ = signal({} as { users: RxCollection } | undefined);
 
   async init() {
-    console.log('RxDBInitService init()');
     const storage = wrappedValidateAjvStorage({
       storage: getRxStorageDexie(),
     });

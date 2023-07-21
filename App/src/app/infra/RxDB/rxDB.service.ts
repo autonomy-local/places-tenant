@@ -5,6 +5,7 @@ import { getRxStorageDexie } from 'rxdb/plugins/storage-dexie';
 import { wrappedValidateAjvStorage } from 'rxdb/plugins/validate-ajv';
 import { userSchema } from '../domain-model/user.model';
 import { tenantSchema } from '../domain-model/tenant.model';
+import { groupSchema } from '../domain-model/group.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,9 @@ export class RxDBService {
   readonly usersCollection$ = signal({} as { users: RxCollection } | undefined);
   readonly tenantsCollection$ = signal(
     {} as { tenants: RxCollection } | undefined
+  );
+  readonly groupsCollection$ = signal(
+    {} as { groups: RxCollection } | undefined
   );
 
   async init() {
@@ -47,5 +51,16 @@ export class RxDBService {
       },
     });
     this.tenantsCollection$.set(tenantsCollection);
+    const groupsCollection = await database.addCollections({
+      groups: {
+        schema: {
+          version: 0,
+          type: groupSchema.type,
+          primaryKey: 'id',
+          properties: groupSchema.properties,
+        },
+      },
+    });
+    this.groupsCollection$.set(groupsCollection);
   }
 }

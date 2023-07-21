@@ -2,6 +2,10 @@ import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { provinces, Province } from 'src/app/infra/base-model/area.model';
 import { prefectures, Prefecture } from 'src/app/infra/base-model/area.model';
+import { GroupWithRXDBService } from 'src/app/infra/RxDB/groupWithRxDB.service';
+import { Group, groupSchema } from '../../infra/domain-model/group.model';
+import Ajv from 'ajv/dist/core';
+import addFormats from 'ajv-formats';
 
 @Component({
   selector: 'app-group-register',
@@ -24,7 +28,7 @@ export class GroupRegisterComponent implements OnInit {
     cityValue: new FormControl('', [Validators.required]),
   });
 
-  constructor() {}
+  constructor(readonly groupWithRxDB: GroupWithRXDBService) {}
 
   ngOnInit() {
     this.filter();
@@ -38,5 +42,38 @@ export class GroupRegisterComponent implements OnInit {
       this.prefectureItems = filteredPrefectures;
       this.groupForm.get('prefectureValue')?.setValue(null);
     });
+  }
+
+  groupValidation(value: unknown) {
+    const ajv = new Ajv();
+    addFormats(ajv);
+    const validate = ajv.compile(groupSchema);
+    const valid = validate(value);
+    if (!valid) {
+      console.log(validate.errors);
+    }
+    return valid;
+  }
+
+  saveNewGroup() {
+    const newGroupObj: unknown = {
+      name: this.groupForm.get('nameValue')?.value,
+      email: this.groupForm.get('emailValue')?.value,
+      mobilePhone: this.groupForm.get('mobilePhoneValue')?.value,
+      province: this.groupForm.get('provinceValue')?.value,
+      prefecture: this.groupForm.get('prefectureValue')?.value,
+      city: this.groupForm.get('cityValue')?.value,
+    };
+
+    if (!this.groupValidation(newGroupObj)) return;
+
+    this.groupWithRxDB
+      .insertGroup(newGroupObj as Group)
+      .then((doc) => {
+        console.log(doc);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }

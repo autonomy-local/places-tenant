@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './components/user/user.component';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
+import { GroupRegisterComponent } from './components/group-register/group-register.component';
 
 const routes: Routes = [
   {
@@ -59,6 +60,10 @@ const routes: Routes = [
   {
     path: 'user/register',
     component: UserRegisterComponent,
+  },
+  {
+    path: 'group/register',
+    component: GroupRegisterComponent,
   },
 ];
 

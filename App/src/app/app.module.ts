@@ -47,6 +47,7 @@ import {
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '../../src/environments/environment.dev';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
+import { GroupRegisterComponent } from './components/group-register/group-register.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { UserRegisterComponent } from './components/user-register/user-register.
     SignInComponent,
     SignUpComponent,
     UserRegisterComponent,
+    GroupRegisterComponent,
   ],
   imports: [
     BrowserModule,

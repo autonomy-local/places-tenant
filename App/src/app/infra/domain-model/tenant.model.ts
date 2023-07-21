@@ -1,5 +1,5 @@
 import { JSONSchemaType } from 'ajv';
-type Tenant = {
+export type Tenant = {
   id: string;
   name: string;
   province: string; // 道州

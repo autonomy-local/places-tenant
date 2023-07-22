@@ -1,0 +1,61 @@
+<!-- TODO: add Place Register Form -->
+<!-- use: Palce type -->
+<!-- Place props > id, name, province, prefecture, city, address -->
+
+<tui-block-status class="tui-space_bottom-3">
+  <div class="stepper">
+    <tui-stepper [activeItemIndex]="0" orientation="vertical">
+      <button tuiStep>場所名を入力</button>
+      <button tuiStep>活動地域を入力</button>
+      <button tuiStep>住所を入力</button>
+    </tui-stepper>
+  </div>
+  <form [formGroup]="placeForm">
+    <div class="tui-row tui-row_sme">
+      <div>
+        <h3 class="tui-form__header tui-form__header_margin-top_none">
+          場所情報
+        </h3>
+        <div class="tui-form__row mb-1">
+          <tui-input formControlName="nameValue" tuiHintContent="A tooltip">
+            場所名を入力してください（例：○○公園/××集会所/○×公民館）
+            <input tuiTextfield placeholder="場所名"/>
+            <span class="tui-required"></span>
+          </tui-input>
+        </div>
+        <div class="tui-form__row mb-1">
+          <tui-combo-box class="b-form" [stringify]="provinceFilter" formControlName="provinceValue">
+            所在する地域を選択してください
+            <input tuiTextfield placeholder="道州"/>
+            <tui-data-list-wrapper *tuiDataList [items]="provinceItems | tuiFilterByInputWith : provinceFilter" [itemContent]="provinceFilter | tuiStringifyContent"></tui-data-list-wrapper>
+          </tui-combo-box>
+        </div>
+        <div class="tui-form__row mb-1">
+          <tui-combo-box class="b-form" [stringify]="prefectureFilter" formControlName="prefectureValue">
+            所在する地域を選択してください
+            <input tuiTextfield placeholder="都道府県"/>
+            <tui-data-list-wrapper *tuiDataList [items]="prefectureItems | tuiFilterByInputWith : prefectureFilter" [itemContent]="prefectureFilter | tuiStringifyContent"></tui-data-list-wrapper>
+          </tui-combo-box>
+        </div>
+        <div class="tui-form__row mb-1">
+          <tui-input formControlName="cityValue" tuiHintContent="A tooltip">
+            所在する地域を入力してください
+            <input tuiTextfield placeholder="市区町村"/>
+            <span class="tui-required"></span>
+          </tui-input>
+        </div>
+        <div class="tui-form__row mb-1">
+          <tui-input formControlName="addressValue" tuiHintContent="A tooltip">
+            所在する地域を入力してください
+            <input tuiTextfield placeholder="住所"/>
+            <span class="tui-required"></span>
+          </tui-input>
+        </div>
+    </div>
+    </div>
+    </form>
+    <div class="tui-form__buttons tui-space_bottom-3">
+      <button tuiButton type="button" size="l" type="button" (click)="saveNewPlace()">登録</button>
+      <button tuiButton type="button" size="l" type="button" appearance="flat">キャンセル</button>
+    </div>
+</tui-block-status>

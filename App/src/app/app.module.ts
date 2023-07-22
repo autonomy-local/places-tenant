@@ -50,6 +50,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '../../src/environments/environment.dev';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { GroupRegisterComponent } from './components/group-register/group-register.component';
+import { PlaceRegisterComponent } from './components/place-register/place-register.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { GroupRegisterComponent } from './components/group-register/group-regist
     SignUpComponent,
     UserRegisterComponent,
     GroupRegisterComponent,
+    PlaceRegisterComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import {
   TuiLabelModule,
   TuiButtonModule,
   TuiSvgModule,
+  TuiFormatNumberPipeModule,
 } from '@taiga-ui/core';
 import { TuiAppBarModule } from '@taiga-ui/addon-mobile';
 import { TuiBlockStatusModule } from '@taiga-ui/layout';
@@ -25,6 +26,7 @@ import { TuiFilterByInputPipeModule } from '@taiga-ui/kit';
 import { TuiFilterPipeModule } from '@taiga-ui/cdk';
 import { TuiStringifyContentPipeModule } from '@taiga-ui/kit';
 import { TuiCheckboxLabeledModule } from '@taiga-ui/kit';
+import { TuiTableModule } from '@taiga-ui/addon-table';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -81,6 +83,8 @@ import { GroupRegisterComponent } from './components/group-register/group-regist
     TuiCheckboxModule,
     TuiComboBoxModule,
     TuiCheckboxLabeledModule,
+    TuiTableModule,
+    TuiFormatNumberPipeModule,
     ReactiveFormsModule,
     TuiInputModule,
     TuiDataListWrapperModule,

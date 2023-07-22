@@ -1,1 +1,41 @@
-<p>group works!</p>
+
+    <!-- 登録団体がない場合には登録機能への導線を表示する -->
+    <ng-container *ngIf="groups$().length === 0">
+      <tui-notification status="warning" class="tui-space_top-2 tui-space_right-2 tui-space_left-2">
+        <span>団体が登録されていません</span>
+      </tui-notification>
+        <button
+          tuiButton
+          icon="tuiIconUser"
+          routerLink="/group/register"
+          class="tui-button tui-space_top-4"
+          size="l"
+          type="button"
+          appearance="secondary"
+        >
+          団体を登録する
+        </button>
+  </ng-container>
+  <ng-container *ngIf="groups$().length !== 0">
+    <tui-notification class="tui-space_top-4 tui-space_left-4 tui-space_right-4">
+      <a routerLink="/group/register">新しい団体を登録する</a>
+    </tui-notification>
+    <table tuiTable class="table tui-space_top-4" [columns]="columns">
+      <thead>
+        <tr tuiThGroup>
+          <th tuiTh *ngFor="let column of columns">
+            {{ column }}
+          </th>
+        </tr>
+      </thead>
+      <tbody tuiTbody [data]="groups$()">
+        <tr *ngFor="let item of groups" tuiTr>
+          <td *tuiCell="'名称'">{{ item.name }}</td>
+          <td *tuiCell="'活動場所'">{{ item.city }}</td>
+          <td *tuiCell="'email'">{{ item.email }}</td>
+          <td *tuiCell="'電話番号'">{{ item.mobilePhone }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+

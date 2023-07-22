@@ -59,10 +59,18 @@ export class PlaceRegisterComponent implements OnInit {
   }
 
   saveNewPlace() {
-    const place = this.placeForm.value;
+    const newPlaceObj = {
+      id: self.crypto.randomUUID(),
+      name: this.placeForm.get('nameValue')?.value,
+      province: this.placeForm.get('provinceValue')?.value?.name,
+      prefecture: this.placeForm.get('prefectureValue')?.value?.name,
+      city: this.placeForm.get('cityValue')?.value,
+      address: this.placeForm.get('addressValue')?.value,
+    };
+
     // if (!this.placeValidation(place)) return;
     this.placeWithRxDB
-      .insertPlace(place as Place)
+      .insertPlace(newPlaceObj as Place)
       .then((doc) => {
         console.log(doc);
         this.placeForm.reset();

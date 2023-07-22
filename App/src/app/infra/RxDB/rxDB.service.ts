@@ -6,6 +6,7 @@ import { wrappedValidateAjvStorage } from 'rxdb/plugins/validate-ajv';
 import { userSchema } from '../domain-model/user.model';
 import { tenantSchema } from '../domain-model/tenant.model';
 import { groupSchema } from '../domain-model/group.model';
+import { placeSchema } from '../domain-model/place.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,9 @@ export class RxDBService {
   );
   readonly groupsCollection$ = signal(
     {} as { groups: RxCollection } | undefined
+  );
+  readonly placesCollection$ = signal(
+    {} as { places: RxCollection } | undefined
   );
 
   async init() {
@@ -62,5 +66,16 @@ export class RxDBService {
       },
     });
     this.groupsCollection$.set(groupsCollection);
+    const placesCollection = await database.addCollections({
+      places: {
+        schema: {
+          version: 0,
+          type: placeSchema.type,
+          primaryKey: 'id',
+          properties: placeSchema.properties,
+        },
+      },
+    });
+    this.placesCollection$.set(placesCollection);
   }
 }

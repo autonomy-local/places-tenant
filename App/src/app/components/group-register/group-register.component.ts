@@ -6,6 +6,7 @@ import { GroupWithRXDBService } from 'src/app/infra/RxDB/groupWithRxDB.service';
 import { Group, groupSchema } from '../../infra/domain-model/group.model';
 import Ajv from 'ajv/dist/core';
 import addFormats from 'ajv-formats';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-group-register',
@@ -28,7 +29,10 @@ export class GroupRegisterComponent implements OnInit {
     cityValue: new FormControl('', [Validators.required]),
   });
 
-  constructor(readonly groupWithRxDB: GroupWithRXDBService) {}
+  constructor(
+    readonly groupWithRxDB: GroupWithRXDBService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.filter();
@@ -57,20 +61,24 @@ export class GroupRegisterComponent implements OnInit {
 
   saveNewGroup() {
     const newGroupObj: unknown = {
+      id: self.crypto.randomUUID(),
       name: this.groupForm.get('nameValue')?.value,
       email: this.groupForm.get('emailValue')?.value,
       mobilePhone: this.groupForm.get('mobilePhoneValue')?.value,
-      province: this.groupForm.get('provinceValue')?.value,
-      prefecture: this.groupForm.get('prefectureValue')?.value,
+      province: this.groupForm.get('provinceValue')?.value?.name,
+      prefecture: this.groupForm.get('prefectureValue')?.value?.name,
       city: this.groupForm.get('cityValue')?.value,
     };
 
-    if (!this.groupValidation(newGroupObj)) return;
+    // if (!this.groupValidation(newGroupObj)) return;
 
     this.groupWithRxDB
       .insertGroup(newGroupObj as Group)
       .then((doc) => {
         console.log(doc);
+        this.groupForm.reset();
+        // groupsページに遷移する
+        this.router.navigate(['/group']);
       })
       .catch((err) => {
         console.log(err);

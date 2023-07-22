@@ -60,17 +60,16 @@ export class PlaceRegisterComponent implements OnInit {
 
   saveNewPlace() {
     const place = this.placeForm.value;
-    if (this.placeValidation(place)) {
-      this.placeWithRxDB
-        .insertPlace(place as Place)
-        .then((doc) => {
-          console.log(doc);
-          this.placeForm.reset();
-          this.router.navigate(['/place']);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    // if (!this.placeValidation(place)) return;
+    this.placeWithRxDB
+      .insertPlace(place as Place)
+      .then((doc) => {
+        console.log(doc);
+        this.placeForm.reset();
+        this.router.navigate(['/place']);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }

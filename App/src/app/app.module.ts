@@ -9,10 +9,15 @@ import {
   TuiButtonModule,
   TuiSvgModule,
   TuiFormatNumberPipeModule,
+  TuiFormatDatePipeModule,
 } from '@taiga-ui/core';
 import { TuiAppBarModule } from '@taiga-ui/addon-mobile';
 import { TuiBlockStatusModule } from '@taiga-ui/layout';
-import { TuiTilesModule } from '@taiga-ui/kit';
+import {
+  TuiInputDateModule,
+  TuiInputTimeModule,
+  TuiTilesModule,
+} from '@taiga-ui/kit';
 import { TuiTabBarModule } from '@taiga-ui/addon-mobile';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
@@ -27,6 +32,8 @@ import { TuiFilterPipeModule } from '@taiga-ui/cdk';
 import { TuiStringifyContentPipeModule } from '@taiga-ui/kit';
 import { TuiCheckboxLabeledModule } from '@taiga-ui/kit';
 import { TuiTableModule } from '@taiga-ui/addon-table';
+import { TuiInputDateRangeModule } from '@taiga-ui/kit';
+import { TUI_DATE_FORMAT, TUI_DATE_SEPARATOR } from '@taiga-ui/cdk';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -51,6 +58,7 @@ import { environment } from '../../src/environments/environment.dev';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { GroupRegisterComponent } from './components/group-register/group-register.component';
 import { PlaceRegisterComponent } from './components/place-register/place-register.component';
+import { EventRegisterComponent } from './components/event-register/event-register.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +69,7 @@ import { PlaceRegisterComponent } from './components/place-register/place-regist
     UserRegisterComponent,
     GroupRegisterComponent,
     PlaceRegisterComponent,
+    EventRegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,11 +96,15 @@ import { PlaceRegisterComponent } from './components/place-register/place-regist
     TuiCheckboxLabeledModule,
     TuiTableModule,
     TuiFormatNumberPipeModule,
+    TuiInputTimeModule,
     ReactiveFormsModule,
+    TuiInputDateRangeModule,
     TuiInputModule,
+    TuiInputDateModule,
     TuiDataListWrapperModule,
     TuiFilterByInputPipeModule,
     TuiStringifyContentPipeModule,
+    TuiFormatDatePipeModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireAnalyticsModule,
@@ -100,6 +113,14 @@ import { PlaceRegisterComponent } from './components/place-register/place-regist
   ],
   providers: [
     { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
+    {
+      provide: TUI_DATE_FORMAT,
+      useValue: 'YMD',
+    },
+    {
+      provide: TUI_DATE_SEPARATOR,
+      useValue: '/',
+    },
     ScreenTrackingService,
     UserTrackingService,
   ],

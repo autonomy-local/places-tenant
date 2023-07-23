@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reservation',
@@ -9,6 +10,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReservationComponent implements OnInit {
+  constructor(private router: Router) {}
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin],
     initialView: 'dayGridMonth',
@@ -29,6 +31,7 @@ export class ReservationComponent implements OnInit {
         text: '予約を追加',
         click: () => {
           console.log('addEventButton');
+          this.router.navigate(['/event/register']);
         },
       },
       selectPlaceButton: {

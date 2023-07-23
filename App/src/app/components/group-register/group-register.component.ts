@@ -4,7 +4,7 @@ import { provinces, Province } from 'src/app/infra/base-model/area.model';
 import { prefectures, Prefecture } from 'src/app/infra/base-model/area.model';
 import { GroupWithRXDBService } from 'src/app/infra/RxDB/groupWithRxDB.service';
 import { Group, groupSchema } from '../../infra/domain-model/group.model';
-import Ajv from 'ajv/dist/core';
+import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import { Router } from '@angular/router';
 

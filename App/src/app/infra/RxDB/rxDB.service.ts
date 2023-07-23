@@ -7,6 +7,7 @@ import { userSchema } from '../domain-model/user.model';
 import { tenantSchema } from '../domain-model/tenant.model';
 import { groupSchema } from '../domain-model/group.model';
 import { placeSchema } from '../domain-model/place.model';
+import { eventSchema } from '../domain-model/event.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,9 @@ export class RxDBService {
   );
   readonly placesCollection$ = signal(
     {} as { places: RxCollection } | undefined
+  );
+  readonly eventsCollection$ = signal(
+    {} as { events: RxCollection } | undefined
   );
 
   async init() {
@@ -77,5 +81,16 @@ export class RxDBService {
       },
     });
     this.placesCollection$.set(placesCollection);
+    const eventsCollection$ = await database.addCollections({
+      events: {
+        schema: {
+          version: 0,
+          type: eventSchema.type,
+          primaryKey: 'id',
+          properties: eventSchema.properties,
+        },
+      },
+    });
+    this.eventsCollection$.set(eventsCollection$);
   }
 }

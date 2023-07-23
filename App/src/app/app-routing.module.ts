@@ -4,6 +4,7 @@ import { UserComponent } from './components/user/user.component';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { GroupRegisterComponent } from './components/group-register/group-register.component';
 import { PlaceRegisterComponent } from './components/place-register/place-register.component';
+import { EventRegisterComponent } from './components/event-register/event-register.component';
 
 const routes: Routes = [
   {
@@ -69,6 +70,10 @@ const routes: Routes = [
   {
     path: 'place/register',
     component: PlaceRegisterComponent,
+  },
+  {
+    path: 'event/register',
+    component: EventRegisterComponent,
   },
 ];
 

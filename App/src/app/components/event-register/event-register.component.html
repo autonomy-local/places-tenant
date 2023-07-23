@@ -1,0 +1,81 @@
+<!-- TODO: Event Register Form -->
+<div class="stepper tui-space_top-3">
+  <tui-stepper [activeItemIndex]="0">
+    <button tuiStep>イベント名を入力</button>
+    <button tuiStep>日付・時間を入力</button>
+    <button tuiStep>場所を入力</button>
+    <button tuiStep>内容・参加費・定員を入力</button>
+  </tui-stepper>
+</div>
+<tui-block-status class="tui-space_bottom-3">
+  <form [formGroup]="eventForm">
+   <div class="tui-row tui-row_sme">
+      <div>
+        <h3 class="tui-form__header tui-form__header_margin-top_none">
+          イベント情報
+        </h3>
+        <div class="tui-form__row mb-1">
+          <tui-input formControlName="nameValue" tuiHintContent="A tooltip">
+            イベント名を入力してください
+            <input tuiTextfield placeholder="イベント名"/>
+            <span class="tui-required"></span>
+          </tui-input>
+        </div>
+        <div class="tui-form__row mb-1">
+          <tui-input-date formControlName="dateValue" tuiHintContent="A tooltip">
+            イベントの日付を入力してください
+            <input tuiTextfield placeholder="イベントの日付"/>
+            <span class="tui-required"></span>  
+          </tui-input-date>
+        </div>
+        <div class="tui-form__row mb-1">
+          <tui-input-time formControlName="startTimeValue" tuiHintContent="A tooltip">
+            イベントの開始時間を入力してください
+            <input tuiTextfield placeholder="イベントの時間"/>
+            <span class="tui-required"></span>
+          </tui-input-time>
+        </div>
+        <div class="tui-form__row mb-1">
+          <tui-input-time formControlName="endTimeValue" tuiHintContent="A tooltip">
+            イベントの終了時間を入力してください
+            <input tuiTextfield placeholder="イベントの時間"/>
+            <span class="tui-required"></span>
+          </tui-input-time>
+        </div>
+        <div class="tui-form__row mb-1">
+          <tui-input formControlName="placeValue" tuiHintContent="A tooltip">
+            イベントの場所を入力してください
+            <input tuiTextfield placeholder="イベントの場所"/>
+            <span class="tui-required"></span>
+          </tui-input>
+        </div>
+        <div class="tui-form__row mb-1">
+          <tui-input formControlName="contentValue" tuiHintContent="A tooltip">
+            イベントの内容を入力してください
+            <input tuiTextfield placeholder="イベントの内容"/>
+            <span class="tui-required"></span>
+          </tui-input>
+        </div>
+        <div class="tui-form__row mb-1">
+          <tui-input formControlName="feeValue" tuiHintContent="A tooltip">
+            イベントの参加費を入力してください
+            <input tuiTextfield placeholder="イベントの参加費" type="number" min="0"/>
+            <span class="tui-required"></span>
+          </tui-input>
+        </div>
+        <div class="tui-form__row mb-1">
+          <tui-input formControlName="capacityValue" tuiHintContent="A tooltip">
+            イベントの定員を入力してください
+            <input tuiTextfield placeholder="イベントの定員" type="number" min="0"/>
+            <span class="tui-required"></span>
+          </tui-input>
+          </div>
+   </div>
+    </div>
+  </form>
+  <div class="tui-form__buttons tui-space_top-3">
+    <button tuiButton size="l" [disabled]="!eventForm.valid">登録</button>
+    <button tuiButton size="l" appearance="flat">キャンセル</button>
+  </div>
+</tui-block-status>
+

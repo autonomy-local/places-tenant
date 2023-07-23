@@ -25,4 +25,5 @@ jobs:
           entryPoint: ./App
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_AUTONOMY_PLACES_DEV }}"
+          expires: 1h
           projectId: autonomy-places-dev

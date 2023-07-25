@@ -37,6 +37,7 @@ export class EventRegisterComponent {
     const newEvent: unknown = {
       id: self.crypto.randomUUID(),
       title: this.eventForm.get('nameValue')?.value,
+      dateStr: JSON.stringify(this.eventForm.get('dateValue')?.value),
       startStr: JSON.stringify(this.eventForm.get('startTimeValue')?.value),
       endStr: JSON.stringify(this.eventForm.get('endTimeValue')?.value),
     };

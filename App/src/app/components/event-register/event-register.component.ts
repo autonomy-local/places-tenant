@@ -1,6 +1,8 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TuiDay } from '@taiga-ui/cdk';
+import { EventWithRXDBService } from '../../infra/RxDB/eventWithRxDB.service';
+import { Event } from '../../infra/domain-model/event.model';
 
 @Component({
   selector: 'app-event-register',
@@ -9,6 +11,7 @@ import { TuiDay } from '@taiga-ui/cdk';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventRegisterComponent {
+  constructor(readonly eventWithRxDB: EventWithRXDBService) {}
   now = new Date().toLocaleDateString('ja-JP');
   dateArray = this.now.split('/');
 
@@ -29,4 +32,21 @@ export class EventRegisterComponent {
     feeValue: new FormControl('', [Validators.required]),
     capacityValue: new FormControl('', [Validators.required]),
   });
+
+  saveNewEvent() {
+    const newEvent: unknown = {
+      id: self.crypto.randomUUID(),
+      title: this.eventForm.get('nameValue')?.value,
+      startStr: JSON.stringify(this.eventForm.get('startTimeValue')?.value),
+      endStr: JSON.stringify(this.eventForm.get('endTimeValue')?.value),
+    };
+    this.eventWithRxDB
+      .insertEvent(newEvent as Event)
+      .then((doc) => {
+        console.log(doc);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }

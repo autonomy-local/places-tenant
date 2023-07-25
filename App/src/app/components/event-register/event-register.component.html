@@ -74,7 +74,7 @@
     </div>
   </form>
   <div class="tui-form__buttons tui-space_top-3">
-    <button tuiButton size="l" [disabled]="!eventForm.valid">登録</button>
+    <button tuiButton size="l" [disabled]="!eventForm.valid" (click)="saveNewEvent()">登録</button>
     <button tuiButton size="l" appearance="flat">キャンセル</button>
   </div>
 </tui-block-status>

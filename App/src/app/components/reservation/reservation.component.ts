@@ -1,7 +1,13 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { Router } from '@angular/router';
+import { EventWithRXDBService } from '../../infra/RxDB/eventWithRxDB.service';
 
 @Component({
   selector: 'app-reservation',
@@ -10,7 +16,12 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReservationComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    public eventWithRXDBService: EventWithRXDBService
+  ) {}
+  events: Event[] = [];
+  events$ = signal(this.events);
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin],
     initialView: 'dayGridMonth',
@@ -41,15 +52,30 @@ export class ReservationComponent implements OnInit {
         },
       },
     },
-    events: [
-      { title: 'event 1', date: '2023-07-22' },
-      { title: 'event 2', date: '2023-07-25' },
-      { title: 'event 3', date: '2023-07-26' },
-      { title: 'event 4', date: '2023-07-27' },
-    ],
   };
 
   ngOnInit() {
     console.log('ngOnInit');
+    this.eventWithRXDBService.findAllEvents().then((events) => {
+      if (events) {
+        const result: unknown = events.map((event) => {
+          const start = JSON.parse(event._data.startStr);
+          const end = JSON.parse(event._data.endStr);
+          const date = JSON.parse(event._data.dateStr);
+          const startHours = start.hours < 10 ? `0${start.hours}` : start.hours;
+          const endHours = end.hours < 10 ? `0${end.hours}` : end.hours;
+          const startMinutes =
+            start.minutes < 10 ? `0${start.minutes}` : start.minutes;
+          const endMinutes = end.minutes < 10 ? `0${end.minutes}` : end.minutes;
+
+          return {
+            title: event._data.title,
+            start: `${date}T${startHours}:${startMinutes}:00`,
+            end: `${date}T${endHours}:${endMinutes}:00`,
+          };
+        });
+        this.events$.set(result as Event[]);
+      }
+    });
   }
 }

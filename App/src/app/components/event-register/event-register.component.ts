@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TuiDay } from '@taiga-ui/cdk';
 import { EventWithRXDBService } from '../../infra/RxDB/eventWithRxDB.service';
 import { Event } from '../../infra/domain-model/event.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-register',
@@ -11,7 +12,10 @@ import { Event } from '../../infra/domain-model/event.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventRegisterComponent {
-  constructor(readonly eventWithRxDB: EventWithRXDBService) {}
+  constructor(
+    readonly eventWithRxDB: EventWithRXDBService,
+    private router: Router
+  ) {}
   now = new Date().toLocaleDateString('ja-JP');
   dateArray = this.now.split('/');
 
@@ -45,6 +49,8 @@ export class EventRegisterComponent {
       .insertEvent(newEvent as Event)
       .then((doc) => {
         console.log(doc);
+        this.eventForm.reset();
+        this.router.navigate(['/reservation']);
       })
       .catch((err) => {
         console.log(err);

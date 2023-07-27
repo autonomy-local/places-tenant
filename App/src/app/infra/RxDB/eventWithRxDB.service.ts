@@ -18,4 +18,16 @@ export class EventWithRXDBService {
     const docs = await eventsCollection?.events.find().exec();
     return docs;
   }
+
+  async findById(id: string) {
+    const eventsCollection = await this.rxDB.eventsCollection$();
+    const doc = await eventsCollection?.events.findOne(id).exec();
+    return doc;
+  }
+
+  async deleteById(id: string) {
+    const eventsCollection = await this.rxDB.eventsCollection$();
+    const doc = await eventsCollection?.events.findOne(id).exec();
+    await doc?.remove();
+  }
 }

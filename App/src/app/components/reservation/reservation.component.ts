@@ -4,10 +4,11 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/core';
+import { CalendarOptions, EventClickArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { Router } from '@angular/router';
 import { EventWithRXDBService } from '../../infra/RxDB/eventWithRxDB.service';
+import { Event } from '../../infra/domain-model/event.model';
 
 @Component({
   selector: 'app-reservation',
@@ -25,6 +26,7 @@ export class ReservationComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin],
     initialView: 'dayGridMonth',
+    eventClick: this.handleEventClick.bind(this),
     showNonCurrentDates: false,
     timeZone: 'local',
     locale: 'ja',
@@ -59,6 +61,7 @@ export class ReservationComponent implements OnInit {
     this.eventWithRXDBService.findAllEvents().then((events) => {
       if (events) {
         const result: unknown = events.map((event) => {
+          const id = event._data.id;
           const start = JSON.parse(event._data.startStr);
           const end = JSON.parse(event._data.endStr);
           const date = JSON.parse(event._data.dateStr);
@@ -69,6 +72,7 @@ export class ReservationComponent implements OnInit {
           const endMinutes = end.minutes < 10 ? `0${end.minutes}` : end.minutes;
 
           return {
+            id: id,
             title: event._data.title,
             start: `${date}T${startHours}:${startMinutes}:00`,
             end: `${date}T${endHours}:${endMinutes}:00`,
@@ -76,6 +80,14 @@ export class ReservationComponent implements OnInit {
         });
         this.events$.set(result as Event[]);
       }
+    });
+  }
+
+  handleEventClick(event: EventClickArg) {
+    this.eventWithRXDBService.deleteById(event.event.id).then(() => {
+      this.events$.update((changedEvent) =>
+        changedEvent.filter((e) => e.id !== event.event.id)
+      );
     });
   }
 }

@@ -18,4 +18,16 @@ export class PlaceWithRXDBService {
     const docs = await placesCollection?.places.find().exec();
     return docs;
   }
+
+  async findPlaceById(id: string) {
+    const placesCollection = await this.rxDB.placesCollection$();
+    const doc = await placesCollection?.places.findOne(id).exec();
+    return doc;
+  }
+
+  async deleteById(id: string) {
+    const placesCollection = await this.rxDB.placesCollection$();
+    const doc = await placesCollection?.places.findOne(id).exec();
+    await doc?.remove();
+  }
 }

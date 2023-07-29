@@ -30,6 +30,7 @@
       <tr *ngFor="let item of places" tuiTr>
         <td *tuiCell="'名称'">{{ item.name }}</td>
         <td *tuiCell="'住所'">{{ item.address }}</td>
+        <td *tuiCell="'削除'" (click)="delete(item.id)">🗑️</td>
       </tr>
     </tbody>
   </table>

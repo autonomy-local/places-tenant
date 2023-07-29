@@ -16,7 +16,7 @@ import { Place } from '../../infra/domain-model/place.model';
 export class PlaceComponent implements OnInit {
   constructor(public placeWithRXDBService: PlaceWithRXDBService) {}
   places: Place[] = [];
-  columns = ['名称', '住所'];
+  columns = ['名称', '住所', '削除'];
   places$ = signal(this.places);
   ngOnInit(): void {
     console.log('ngOnInit');
@@ -27,5 +27,11 @@ export class PlaceComponent implements OnInit {
         this.places$.set(this.places);
       }
     });
+  }
+
+  delete(id: string) {
+    this.placeWithRXDBService.deleteById(id);
+    this.places = this.places.filter((place) => place.id !== id);
+    this.places$.set(this.places);
   }
 }

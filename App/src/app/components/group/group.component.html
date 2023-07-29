@@ -34,6 +34,7 @@
           <td *tuiCell="'活動場所'">{{ item.city }}</td>
           <td *tuiCell="'email'">{{ item.email }}</td>
           <td *tuiCell="'電話番号'">{{ item.mobilePhone }}</td>
+          <td *tuiCell="'削除'" (click)="delete(item.id)">🗑️</td>
         </tr>
       </tbody>
     </table>

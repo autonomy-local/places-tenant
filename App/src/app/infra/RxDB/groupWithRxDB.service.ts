@@ -18,4 +18,16 @@ export class GroupWithRXDBService {
     const docs = await groupsCollection?.groups.find().exec();
     return docs;
   }
+
+  async findById(id: string) {
+    const groupsCollection = await this.rxDB.groupsCollection$();
+    const doc = await groupsCollection?.groups.findOne(id).exec();
+    return doc;
+  }
+
+  async deleteById(id: string) {
+    const groupsCollection = await this.rxDB.groupsCollection$();
+    const doc = await groupsCollection?.groups.findOne(id).exec();
+    await doc?.remove();
+  }
 }

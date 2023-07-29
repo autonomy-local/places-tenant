@@ -16,7 +16,7 @@ import { Group } from '../../infra/domain-model/group.model';
 export class GroupComponent implements OnInit {
   constructor(public groupWithRXDBService: GroupWithRXDBService) {}
   groups: Group[] = [];
-  columns = ['名称', '活動場所', 'email', '電話番号'];
+  columns = ['名称', '活動場所', 'email', '電話番号', '削除'];
   groups$ = signal(this.groups);
   ngOnInit(): void {
     console.log('ngOnInit');
@@ -27,5 +27,11 @@ export class GroupComponent implements OnInit {
         this.groups$.set(this.groups);
       }
     });
+  }
+
+  delete(id: string) {
+    this.groupWithRXDBService.deleteById(id);
+    this.groups = this.groups.filter((group) => group.id !== id);
+    this.groups$.set(this.groups);
   }
 }

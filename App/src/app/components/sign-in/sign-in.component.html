@@ -21,17 +21,14 @@
         パスワード<span class="tui-required"></span>
       </tui-input>
     </div>
-    <div class="tui-form__buttons">
-      <button tuiButton class="tui-form__button" size="l" type="submit">
+    <div class="tui-form__button">
+      <button tuiButton class="tui-form__button" size="l" type="submit" [disabled]="true">
         ログイン
-      </button>
-      <button tuiButton class="tui-form__button" size="l" type="button" appearance="flat">
-        キャンセル
       </button>
     </div>
     <p>or</p>
     <div class="tui-form__button">
-      <button tuiButton class="tui-form__button" size="l" type="submit">
+      <button tuiButton class="tui-form__button" size="l" type="submit" [disabled]="true">
         <span>Googleアカウントログイン</span>
       </button>
     </div>

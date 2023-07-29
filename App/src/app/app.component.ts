@@ -45,31 +45,31 @@ export class AppComponent implements OnInit {
       icon: 'tuiIconUsersLarge',
       path: 'group',
     },
-    {
-      label: '会計管理',
-      icon: 'tuiIconDollarSignLarge',
-      path: 'account',
-    },
-    {
-      label: '規約管理',
-      icon: 'tuiIconArchiveLarge',
-      path: 'rule',
-    },
-    {
-      label: '運営会議',
-      icon: 'tuiIconSmileLarge',
-      path: 'meeting',
-    },
-    {
-      label: '報告書作成',
-      icon: 'tuiIconTrelloLarge',
-      path: 'report',
-    },
-    {
-      label: '設定',
-      icon: 'tuiIconSettingsLarge',
-      path: 'setting',
-    },
+    // {
+    //   label: '会計管理',
+    //   icon: 'tuiIconDollarSignLarge',
+    //   path: 'account',
+    // },
+    // {
+    //   label: '規約管理',
+    //   icon: 'tuiIconArchiveLarge',
+    //   path: 'rule',
+    // },
+    // {
+    //   label: '運営会議',
+    //   icon: 'tuiIconSmileLarge',
+    //   path: 'meeting',
+    // },
+    // {
+    //   label: '報告書作成',
+    //   icon: 'tuiIconTrelloLarge',
+    //   path: 'report',
+    // },
+    // {
+    //   label: '設定',
+    //   icon: 'tuiIconSettingsLarge',
+    //   path: 'setting',
+    // },
   ];
   order = new Map();
 

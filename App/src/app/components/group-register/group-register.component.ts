@@ -24,8 +24,13 @@ export class GroupRegisterComponent implements OnInit {
     nameValue: new FormControl('', [Validators.required]),
     emailValue: new FormControl('', [Validators.required]),
     mobilePhoneValue: new FormControl('', [Validators.required]),
-    provinceValue: new FormControl({} as Province, [Validators.required]),
-    prefectureValue: new FormControl({} as Prefecture, [Validators.required]),
+    provinceValue: new FormControl({ id: 'dummy', name: '中国' } as Province, [
+      Validators.required,
+    ]),
+    prefectureValue: new FormControl(
+      { id: 'dummy', name: '広島県' } as Prefecture,
+      [Validators.required]
+    ),
     cityValue: new FormControl('', [Validators.required]),
   });
 

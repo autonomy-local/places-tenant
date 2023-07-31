@@ -1,4 +1,5 @@
 import { Component, OnInit, effect } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SignInService } from './signIn.service';
 import { AuthService } from '../user/auth.service';
 import { SignOutService } from '../sign-out/signOut.service';
@@ -25,6 +26,10 @@ export class SignInComponent implements OnInit {
   }
 
   isLoading = false;
+  signInForm = new FormGroup({
+    emailValue: new FormControl('', [Validators.required]),
+    passwordValue: new FormControl('', [Validators.required]),
+  });
 
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
@@ -39,5 +44,18 @@ export class SignInComponent implements OnInit {
     this.signInService.signInAnonymously().then(() => {
       this.authService.getUser();
     });
+  }
+
+  signInWithEmailAndPassword(): void {
+    this.isLoading = true;
+    const email = this.signInForm.get('emailValue')?.value;
+    const password = this.signInForm.get('passwordValue')?.value;
+    if (email && password) {
+      this.signInService
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          this.authService.getUser();
+        });
+    }
   }
 }

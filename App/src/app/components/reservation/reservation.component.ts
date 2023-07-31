@@ -27,6 +27,7 @@ export class ReservationComponent implements OnInit {
     plugins: [dayGridPlugin],
     initialView: 'dayGridMonth',
     eventClick: this.handleEventClick.bind(this),
+    height: window.innerHeight * 0.8,
     showNonCurrentDates: false,
     timeZone: 'local',
     locale: 'ja',

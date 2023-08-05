@@ -85,10 +85,12 @@ export class ReservationComponent implements OnInit {
   }
 
   handleEventClick(event: EventClickArg) {
-    this.eventWithRXDBService.deleteById(event.event.id).then(() => {
-      this.events$.update((changedEvent) =>
-        changedEvent.filter((e) => e.id !== event.event.id)
-      );
-    });
+    if (window.confirm('予約を削除しますか？')) {
+      this.eventWithRXDBService.deleteById(event.event.id).then(() => {
+        this.events$.update((changedEvent) =>
+          changedEvent.filter((e) => e.id !== event.event.id)
+        );
+      });
+    }
   }
 }

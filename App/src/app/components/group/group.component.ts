@@ -30,8 +30,10 @@ export class GroupComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.groupWithRXDBService.deleteById(id);
-    this.groups = this.groups.filter((group) => group.id !== id);
-    this.groups$.set(this.groups);
+    if (window.confirm('削除しますか？')) {
+      this.groupWithRXDBService.deleteById(id);
+      this.groups = this.groups.filter((group) => group.id !== id);
+      this.groups$.set(this.groups);
+    }
   }
 }

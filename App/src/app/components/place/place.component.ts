@@ -30,8 +30,10 @@ export class PlaceComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.placeWithRXDBService.deleteById(id);
-    this.places = this.places.filter((place) => place.id !== id);
-    this.places$.set(this.places);
+    if (window.confirm('削除しますか？')) {
+      this.placeWithRXDBService.deleteById(id);
+      this.places = this.places.filter((place) => place.id !== id);
+      this.places$.set(this.places);
+    }
   }
 }
